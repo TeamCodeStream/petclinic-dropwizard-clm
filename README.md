@@ -1,4 +1,18 @@
-# Pet Clinic with Dropwizard
+# Pet Clinic with Dropwizard with Newrelic Agent
+
+## Getting the app running with docker
+
+```
+git clone https://github.com/TeamCodeStream/petclinic-dropwizard-clm.git
+cd petclinic-dropwizard-clm
+NEW_RELIC_LICENSE_KEY=12345 docker-compose up -d --build
+```
+
+Substitute 12345 with your New Relic license key.
+
+The docker app will generate some traffic that should be visible in NR1 under "Java Dropwizard PetClinic CLM"
+
+Requires Java 18 (Java 19 not compatible with NewRelic agent)
 
 ## About 
 
