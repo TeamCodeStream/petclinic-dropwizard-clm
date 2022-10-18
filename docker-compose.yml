@@ -1,5 +1,19 @@
-version: "3.9"
+version: '3.9'
+
 services:
+  app:
+    build: .
+    environment:
+      # required
+      NEW_RELIC_LICENSE_KEY: $NEW_RELIC_LICENSE_KEY
+      # optional
+      NEW_RELIC_HOST: ${NEW_RELIC_HOST:-}
+    ports:
+      - "4080:4080"
+      - "4081:4081"
+    depends_on:
+      - db
+
   db:
     image: "postgres:latest"
     ports:
@@ -8,12 +22,3 @@ services:
       POSTGRES_DB: "mydb"
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "sa"
-  app:
-    build: .
-    ports:
-      - "8080:8080"
-      - "8081:8081"
-    depends_on:
-      - db
-    profiles:
-      - local

@@ -44,7 +44,7 @@ public class VisitResource {
             @ApiResponse(responseCode = "500", description = "Visit could not be created")
         }
     )
-    @PUT
+    @POST
     @Path("/pets/{petId}/vets/{vetId}")
     public Visit makeVisit(
         final @PathParam("petId") int petId,

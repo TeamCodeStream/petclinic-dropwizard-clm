@@ -1,5 +1,6 @@
 package io.baris.petclinic.dropwizard.pet;
 
+import com.newrelic.api.agent.Trace;
 import io.baris.petclinic.dropwizard.pet.model.Pet;
 import io.baris.petclinic.dropwizard.pet.model.UpdatePetRequest;
 import io.baris.petclinic.dropwizard.pet.model.CreatePetRequest;
@@ -60,6 +61,7 @@ public class PetResource {
         }
     )
     @GET
+    @Trace
     public List<Pet> getAllPets() {
         return petManager.getAllPets();
     }
@@ -76,7 +78,7 @@ public class PetResource {
             @ApiResponse(responseCode = "500", description = "Pet could not be created")
         }
     )
-    @PUT
+    @POST
     public Pet createPet(
         final @Valid CreatePetRequest createPetRequest
     ) {
@@ -99,7 +101,7 @@ public class PetResource {
         }
     )
     @Path("{id}")
-    @POST
+    @PUT
     public Pet updatePet(
         final @PathParam("id") int id,
         final @Valid UpdatePetRequest updatePetRequest

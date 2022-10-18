@@ -14,10 +14,10 @@ databaseConfig:
 server:
   applicationConnectors:
     - type: http
-      port: 8080
+      port: 4080
   adminConnectors:
     - type: http
-      port: 8081
+      port: 4081
 
 logging:
   level: INFO

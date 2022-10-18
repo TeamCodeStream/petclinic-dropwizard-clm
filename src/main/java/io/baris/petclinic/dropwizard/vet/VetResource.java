@@ -76,7 +76,7 @@ public class VetResource {
             @ApiResponse(responseCode = "500", description = "Vet could not be created")
         }
     )
-    @PUT
+    @POST
     public Vet createVet(
         final @Valid CreateVetRequest createVetRequest
     ) {
@@ -99,7 +99,7 @@ public class VetResource {
         }
     )
     @Path("{id}")
-    @POST
+    @PUT
     public Vet updateVet(
         final @PathParam("id") int id,
         final @Valid UpdateVetRequest updateVetRequest
