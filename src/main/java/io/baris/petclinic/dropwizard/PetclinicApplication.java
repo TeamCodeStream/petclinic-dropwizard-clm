@@ -22,6 +22,7 @@ import io.dropwizard.setup.Environment;
 import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
 import lombok.val;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
+import com.fasterxml.jackson.module.kotlin.KotlinModule;
 
 import static io.baris.petclinic.dropwizard.system.CorsConfigurer.configureCors;
 import static io.baris.petclinic.dropwizard.system.PostgreUtils.applySqlScript;
@@ -44,12 +45,13 @@ public class PetclinicApplication extends Application<PetclinicConfiguration> {
     @Override
     public void initialize(final Bootstrap<PetclinicConfiguration> bootstrap) {
         this.objectMapper = bootstrap.getObjectMapper();
+        this.objectMapper.registerModule(new KotlinModule());
     }
 
     @Override
     public void run(
-        final PetclinicConfiguration configuration,
-        final Environment environment
+            final PetclinicConfiguration configuration,
+            final Environment environment
     ) {
         environment.healthChecks().register("health", new PetclinicHealthCheck());
 
@@ -59,11 +61,11 @@ public class PetclinicApplication extends Application<PetclinicConfiguration> {
     }
 
     private void initialiseBeans(
-        final PetclinicConfiguration configuration,
-        final Environment environment
+            final PetclinicConfiguration configuration,
+            final Environment environment
     ) {
         var jdbi = new JdbiFactory()
-            .build(environment, configuration.getDatabase(), configuration.getDatabaseConfig().getName());
+                .build(environment, configuration.getDatabase(), configuration.getDatabaseConfig().getName());
         jdbi.installPlugin(new SqlObjectPlugin());
 
         // initialize DB schema
@@ -82,8 +84,14 @@ public class PetclinicApplication extends Application<PetclinicConfiguration> {
         val visitManager = new VisitManager(jdbi);
         val petFactManager = new PetFactManager(dogFactClient, catFactClient);
 
+        val kotlinCatFactClient = new io.baris.petclinic.dropwizard.kotlin.petfact.client.CatFactClient(objectMapper, httpClient);
+        val kotlinDogFactClient = new io.baris.petclinic.dropwizard.kotlin.petfact.client.DogFactClient(objectMapper, httpClient);
+        val kotlinPetFactManager = new io.baris.petclinic.dropwizard.kotlin.petfact.PetFactManager(kotlinDogFactClient, kotlinCatFactClient);
+
+
         // register resources
         environment.jersey().register(new PetFactResource(petFactManager));
+        environment.jersey().register(new io.baris.petclinic.dropwizard.kotlin.petfact.PetFactResource(kotlinPetFactManager));
         environment.jersey().register(new VetResource(vetManager));
         environment.jersey().register(new PetResource(petManager));
         environment.jersey().register(new VisitResource(visitManager, petManager, vetManager));

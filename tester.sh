@@ -73,27 +73,33 @@ curl -s -k http://localhost:4080/visits/pets/"${pet2_id}"/vets/"${vet2_id}" \
 }
 '
 
+function step_sleep () {
+  sleep 5
+}
+
 echo "Running automated tests..."
 
 while true; do
   curl -s -o /dev/null http://localhost:4080/pets
-  sleep 2
+  step_sleep
   curl -s -o /dev/null http://localhost:4080/vets
-  sleep 2
+  step_sleep
   curl -s -o /dev/null http://localhost:4080/pets/1
-  sleep 2
+  step_sleep
   curl -s -o /dev/null http://localhost:4080/pets/2
-  sleep 2
+  step_sleep
   curl -s -o /dev/null http://localhost:4080/vets/1
-  sleep 2
+  step_sleep
   curl -s -o /dev/null http://localhost:4080/vets/2
-  sleep 2
+  step_sleep
   curl -s -o /dev/null http://localhost:4080/visits/pets/1
-  sleep 2
+  step_sleep
   curl -s -o /dev/null http://localhost:4080/visits/pets/2
-  sleep 2
+  step_sleep
   curl -s -o /dev/null http://localhost:4080/clm/facts
-  sleep 2
+  step_sleep
+  curl -s -o /dev/null http://localhost:4080/clm/kotlin/facts
+  step_sleep
   # Generate error
   curl -s -k http://localhost:4080/visits/pets/"${pet1_id}"/vets/"${vet1_id}" \
     -H 'Content-Type: application/json' \
@@ -102,7 +108,7 @@ while true; do
      blah111
   }
   '
-  sleep 1
+  step_sleep
 
   timestamp=$(date +"%F %T,%3N")
   echo "$timestamp Completed a full set of operations."
