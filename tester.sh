@@ -98,7 +98,7 @@ while true; do
   step_sleep
   curl -s -o /dev/null http://localhost:4080/clm/facts
   step_sleep
-  curl -s -o /dev/null http://localhost:4080/clm/kotlin/facts
+  curl -s -o /dev/null http://localhost:4080/clm/dolphin/facts
   step_sleep
   # Generate error
   curl -s -k http://localhost:4080/visits/pets/"${pet1_id}"/vets/"${vet1_id}" \

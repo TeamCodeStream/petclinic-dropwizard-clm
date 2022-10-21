@@ -11,7 +11,7 @@ FROM amazoncorretto:18 as build
 WORKDIR /src
 COPY src ./src
 COPY .mvn ./.mvn
-COPY mvnw pom.xml lombok.config ./
+COPY mvnw pom.xml ./
 RUN --mount=type=cache,target=/root/.m2 ./mvnw package -DskipTests
 #RUN echo $HOME
 #RUN ls -alh /root/.m2

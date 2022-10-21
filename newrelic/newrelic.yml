@@ -3,7 +3,7 @@ common: &default_settings
   host: staging-collector.newrelic.com
   enabled: true
   enable_custom_tracing: true
-  app_name: Java Dropwizard PetClinic CLM
+  app_name: Kotlin Dropwizard PetClinic CLM
   attributes.include: request.parameters.*
 #  attributes:
 #    enabled: true

@@ -10,13 +10,13 @@ NEW_RELIC_LICENSE_KEY=12345 docker-compose up -d --build
 
 Substitute 12345 with your New Relic license key.
 
-The docker app will generate some traffic that should be visible in NR1 under "Java Dropwizard PetClinic CLM"
+The docker app will generate some traffic that should be visible in NR1 under "Kotlin Dropwizard PetClinic CLM"
 
 Requires Java 18 (Java 19 not compatible with NewRelic agent)
 
 ## About 
 
-This is an example **Java** RESTful web service for a **pet clinic**. 
+This is an example **Kotlin** RESTful web service for a **pet clinic**. 
 It is mainly based on [Dropwizard](https://www.dropwizard.io) 
 and [PostgreSQL](https://www.postgresql.org).  
 
@@ -29,12 +29,6 @@ The whole list of tools used is as follows:
 * [Lombok](https://projectlombok.org)
 * [Swagger](https://swagger.io)
 * [Maven](https://maven.apache.org)
-
-For testing:
-* [JUnit](https://junit.org/junit5/)
-* [Mockito](https://site.mockito.org/)
-* [AssertJ](https://assertj.github.io/doc/)
-* [Testcontainers](https://www.testcontainers.org)
 
 ## Installation
 

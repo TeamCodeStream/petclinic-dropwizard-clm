@@ -2,17 +2,6 @@
 *.war
 *.ear
 
-# IntelliJ project files
-*.iml
-*.ipr
-*.iws
-.idea
-
-# Eclipse project files
-.classpath
-.project
-.settings
-
 # Build outputs
 *.class
 target
