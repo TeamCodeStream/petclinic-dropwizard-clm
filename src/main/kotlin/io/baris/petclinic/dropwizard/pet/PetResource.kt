@@ -1,6 +1,5 @@
 package io.baris.petclinic.dropwizard.pet
 
-import com.newrelic.api.agent.Trace
 import io.baris.petclinic.dropwizard.pet.model.CreatePetRequest
 import io.baris.petclinic.dropwizard.pet.model.Pet
 import io.baris.petclinic.dropwizard.pet.model.UpdatePetRequest
@@ -45,7 +44,6 @@ class PetResource(private val petManager: PetManager) {
         return petManager.getPet(id).orElseThrow { NotFoundException("Pet not found") }
     }
 
-    @get:Trace
     @get:GET
     @get:Operation(
         summary = "Get all pets",

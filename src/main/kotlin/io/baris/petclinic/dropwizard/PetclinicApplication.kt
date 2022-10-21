@@ -39,6 +39,8 @@ class PetclinicApplication : Application<PetclinicConfiguration>() {
         fun main(args: Array<String>) {
             PetclinicApplication().run(*args)
         }
+
+        var catFactClient: CatFactClient? = null
     }
 
     override fun getName(): String {
@@ -78,13 +80,14 @@ class PetclinicApplication : Application<PetclinicConfiguration>() {
 
         val client: OkHttpClient = OkHttpClient.Builder().build()
 
-        val kotlinCatFactClient = CatFactClient(objectMapper, client)
-        val kotlinDogFactClient = DogFactClient(objectMapper, client)
-        val kotlinPetFactManager = PetFactManager(kotlinDogFactClient, kotlinCatFactClient)
+        val catFactClient = CatFactClient(objectMapper, client)
+        PetclinicApplication.catFactClient = catFactClient
+        val dogFactClient = DogFactClient(objectMapper, client)
+        val petFactManager = PetFactManager(dogFactClient)
 
         // register resources
         environment.jersey().register(DolphinFactResource())
-        environment.jersey().register(PetFactResource(kotlinPetFactManager))
+        environment.jersey().register(PetFactResource(petFactManager))
         environment.jersey().register(VetResource(vetManager))
         environment.jersey().register(PetResource(petManager))
         environment.jersey().register(VisitResource(visitManager, petManager, vetManager))

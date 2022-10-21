@@ -14,6 +14,17 @@ The docker app will generate some traffic that should be visible in NR1 under "K
 
 Requires Java 18 (Java 19 not compatible with NewRelic agent)
 
+## CLM
+
+Classes with clm methods
+
+- io.baris.petclinic.dropwizard.vet.VetResource
+- io.baris.petclinic.dropwizard.pet.PetResource
+- io.baris.petclinic.dropwizard.visit.VisitResource
+- io.baris.petclinic.dropwizard.petfact.PetFactResource - contains 2 separate Resources in one file 
+  and a top level function
+- src/main/kotlin/io/baris/petclinic/dropwizard/petfact/client/RandomExt.kt - contains extension functions
+
 ## About 
 
 This is an example **Kotlin** RESTful web service for a **pet clinic**. 
