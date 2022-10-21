@@ -25,6 +25,8 @@ Classes with clm methods
   and a top level function
 - src/main/kotlin/io/baris/petclinic/dropwizard/petfact/client/RandomExt.kt - contains extension functions
 
+Also uses OkHttp client and jdbi for SQL for future CLM integration possibilities.
+
 ## About 
 
 This is an example **Kotlin** RESTful web service for a **pet clinic**. 

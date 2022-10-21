@@ -49,7 +49,7 @@ class PetclinicApplication : Application<PetclinicConfiguration>() {
 
     override fun initialize(bootstrap: Bootstrap<PetclinicConfiguration>) {
         objectMapper = bootstrap.objectMapper
-        objectMapper.registerModule(KotlinModule())
+        objectMapper.registerModule(KotlinModule.Builder().build())
     }
 
     override fun run(
