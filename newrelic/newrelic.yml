@@ -7,9 +7,9 @@ common: &default_settings
   attributes.include: request.parameters.*
 #  attributes:
 #    enabled: true
-  code_level_metrics:
-    enabled: true
-#  code_level_metrics.enabled: true
+  #code_level_metrics:
+  #  enabled: true
+
   thread_profiler:
     enabled: true
 
