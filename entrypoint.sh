@@ -14,6 +14,9 @@ cleanup() {
 trap cleanup INT TERM
 # "java", "-cp", "libs/*", "io.baris.petclinic.dropwizard.PetclinicApplication", "server", "app-config.yml"
 # start app
+
+sleep 5
+
 nohup java -javaagent:/app/newrelic/newrelic.jar -cp "libs/*" \
   io.baris.petclinic.dropwizard.PetclinicApplication server app-config.yml &
 APP_PID=$!

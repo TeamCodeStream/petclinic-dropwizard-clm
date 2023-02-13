@@ -1,5 +1,6 @@
 package io.baris.petclinic.dropwizard.vet
 
+import com.newrelic.api.agent.Trace
 import io.baris.petclinic.dropwizard.vet.model.CreateVetRequest
 import io.baris.petclinic.dropwizard.vet.model.UpdateVetRequest
 import io.baris.petclinic.dropwizard.vet.model.Vet
@@ -80,6 +81,7 @@ class VetResource(private val vetManager: VetManager) {
         }
     }
 
+    @Trace()
     @Operation(
         summary = "Update vet",
         tags = ["Vet"],

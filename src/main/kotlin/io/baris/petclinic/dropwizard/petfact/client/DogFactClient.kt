@@ -7,5 +7,5 @@ class DogFactClient(
     val objectMapper: ObjectMapper,
     val okHttpClient: OkHttpClient
 ) {
-    val BASE_URL = "https://www.dogfactsapi.ducnguyen.dev"
+    val BASE_URL = "https://dog-api.kinduff.com"
 }

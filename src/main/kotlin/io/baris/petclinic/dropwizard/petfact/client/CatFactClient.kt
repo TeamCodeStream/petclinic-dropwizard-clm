@@ -14,7 +14,7 @@ class CatFactClient(
 ) {
     val BASE_URL = "https://catfact.ninja"
 
-    @Trace
+    @Trace(dispatcher = true)
     fun fetchCatFact(): CatFact {
         Util.doWait(250)
         try {
